@@ -1,19 +1,44 @@
-export type LayoutItemType = 'rack' | 'cold_room';
+export type AreaItem = {
+    id: string
+    label: string
+    icon: string
+}
 
-export interface LayoutItem {
-    id: string;
-    type: LayoutItemType;
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-    orientation?: 'horizontal' | 'vertical';
-    products?: Product[];
-    temperature?: number;
+export type SectionItem = {
+    id: number
+    slug: string
+    label: string
+    icon: string
+}
+
+export interface Location {
+    rack: string
+    position: number 
+    level: number
 }
 
 export interface Product {
-    sku: string;
-    name: string;
-    position: number; // índice de tarima
+    sku: string,
+    name: string,
+    locations: Location[]
+}
+
+export interface Cell {
+    position: number
+    level: number
+    enabled: boolean
+}
+
+export interface Rack {
+    id: number
+    key: string
+    area: string
+    section: string
+    subsection: string
+
+    rows: number
+    columns: number
+    levels: number
+
+    cells: Cell[]
 }
